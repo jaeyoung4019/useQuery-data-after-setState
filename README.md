@@ -24,14 +24,30 @@ query 호출 시 options 로 유동적이게 사용
 
 ```ts
    useEffect( () => {
+       console.log(selectMemberListQuery)
        if (selectMemberListQuery.status === "success")
-            setList(selectMemberListQuery?.data?.list?.map( (data : ListElementProps, index: number) => {
+           setMemberList(selectMemberListQuery?.data?.list?.map( (data : ListElementProps, index: number) => {
                         return {
                             ...data,
                             checked: allCheckBoxState
                         }
 
                     }))
-    } , [selectMemberListQuery.status , allCheckBoxState])
+    } , [selectMemberListQuery.status , allCheckBoxState , selectMemberListQuery.isFetching])
+
+```
+
+### 4. useMemo 사용하기
+
+```ts
+    // const checkedValueList = useMemo( () => {
+    //     return selectMemberListQuery?.data?.list?.map( (data : ListElementProps, index: number) => {
+    //         return {
+    //             ...data,
+    //             checked: allCheckBoxState
+    //         }
+    //
+    //     })
+    // }, [selectMemberListQuery , allCheckBoxState])
 
 ```
